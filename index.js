@@ -2,7 +2,7 @@ const xlsx = require('xlsx');
 const fs = require('fs');
 
 
-
+// Conversion to JSON
 const workbook = xlsx.readFile('data.xlsx');
 const sheetinExcel = workbook.SheetNames[0];
 const name = workbook.Sheets[sheetinExcel];
@@ -16411,7 +16411,9 @@ const responses = [
   }
 ];
 
+
 // a) who has worked for 7 consecutive days.
+console.log("Who has worked for 7 consecutive days.")
 const output = [];
 let prevUser = data[1]['Employee Name'];
 let prevDate = new Date(data[1]['Time']).getDate();
@@ -16453,6 +16455,8 @@ console.log(uniqueArr);
 
 
 // who have less than 10 hours of time between shifts but greater than 1 hour
+// Assuming that the shift is when an person left from one time i.e time out and get on same data on new time as time.
+// calculated the differnece and added the logic.
 console.log("Who have less than 1 - hours of time between shifts but greater than 1 hour.")
 const result = [];
 
@@ -16478,6 +16482,8 @@ console.log([new Set(result)]);
 
 
 // c) Who has worked for more than 14 hours in a single shift
+// Logic : Iterated over the json and looks for Timecard Hour attibute if its greated than 14 as per question then added into answer.
+console.log("Who has worked for more than 14 hours in a single shift");
 data.map((item) => {
   const timeInShift = (item['Timecard Hours (as Time)']);
   // console.log(timeInShift.charAt(1));
