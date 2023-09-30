@@ -16445,11 +16445,36 @@ data.slice(2, data.length).map((item)=>{
       output.push(currUser);
   }
   
-  
 });
 
 const uniqueArr = [...new Set(output)];
 console.log(uniqueArr);
+
+
+
+// who have less than 10 hours of time between shifts but greater than 1 hour
+console.log("Who have less than 1 - hours of time between shifts but greater than 1 hour.")
+const result = [];
+
+for (let i = 0; i < data.length - 1; i++) {
+  const curr = data[i];
+  const next = data[i + 1];
+  
+  
+  const start = new Date(curr["Time Out"]);
+  const end = new Date(next["Time"]);
+  
+  var diff = (end - start)/(1000 * 60 * 60);
+//   console.log(diff/(1000 * 60 * 60));
+//   console.log(data[i]["Employee Name"])
+  
+  if (diff > 1 && diff < 10) {
+    result.push(data[i]["Employee Name"])
+  }
+}
+
+console.log([new Set(result)]);
+
 
 
 // c) Who has worked for more than 14 hours in a single shift
