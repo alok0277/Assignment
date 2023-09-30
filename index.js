@@ -16411,6 +16411,45 @@ const responses = [
   }
 ];
 
+// a) who has worked for 7 consecutive days.
+const output = [];
+let prevUser = data[1]['Employee Name'];
+let prevDate = new Date(data[1]['Time']).getDate();
+let counter = 1;
+
+
+data.slice(2, data.length).map((item)=>{
+  const currUser = item['Employee Name'];
+  let date = new Date(item['Time']).getDate();
+  // console.log(currUser);
+  // console.log(prevUser);
+  if(date == prevDate + 1 && currUser === prevUser)
+  {
+    // console.log(date);
+    // console.log(prevDate);
+    prevDate = date;
+    counter = counter + 1;
+    // console.log(counter);
+  }
+  else if(currUser !== prevUser)
+  {
+    prevUser = currUser;
+    prevDate = date;
+    counter = 1;
+    // console.log(prevUser + " " + currUser);
+    // console.log(date + " " + prevDate)
+  }
+
+  if(counter === 7)
+  {
+      output.push(currUser);
+  }
+  
+  
+});
+
+const uniqueArr = [...new Set(output)];
+console.log(uniqueArr);
 
 
 // c) Who has worked for more than 14 hours in a single shift
